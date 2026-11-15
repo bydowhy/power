@@ -161,7 +161,7 @@ onUnmounted(() => {
             </div>
 
             <!-- Real-time Clock -->
-            <div class="flex mt-6 items-center gap-2 text-gray-300 py-1.5 rounded-full">
+            <div class="flex mt-6 items-center gap-2 dark:text-gray-300 py-1.5 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

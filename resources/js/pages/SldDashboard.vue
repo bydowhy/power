@@ -7,7 +7,10 @@ const meters = ref<Record<string, any>>({});
 const diagramNodes = ref([
     { id: 'sensor_sim_01', label: 'AC DRIVE', top: '25.5%', left: '33%' },
     { id: 'sensor_sim_02', label: 'UTILITY', top: '25.5%', left: '40%' },
-    // ... tambahkan sisanya nanti ...
+    { id: 'sensor_sim_03', label: 'APF/PM', top: '25.5%', left: '47%' },
+    { id: 'sensor_sim_04', label: 'P2', top: '25.5%', left: '53.75%' },
+    { id: 'sensor_sim_05', label: 'SP OCC', top: '25.5%', left: '60.9%' },
+    { id: 'sensor_sim_06', label: 'SP ONP', top: '25.5%', left: '67.75%' },
 ]);
 
 onMounted(() => {
