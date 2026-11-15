@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::inertia('/', 'Welcome')->name('home');
 
@@ -29,6 +30,10 @@ Route::get('/api/meter/{id}/history', function ($id) {
     }
     
     return response()->json($history);
+})->middleware(['auth']);
+
+Route::get('/sld', function () {
+    return Inertia::render('SldDashboard');
 })->middleware(['auth']);
 
 require __DIR__.'/settings.php';

@@ -19,9 +19,14 @@ import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Monitoring',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Single Line Diagram',
+        href: '/sld',
+        icon: FolderGit2,
     },
 ];
 </script>
@@ -34,6 +39,8 @@ const mainNavItems: NavItem[] = [
                     <SidebarMenuButton size="lg" as-child>
                         <Link :href="dashboard()">
                             <AppLogo />
+                        </Link>
+                        <Link :href="'/sld'">
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
