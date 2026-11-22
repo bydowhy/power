@@ -1,0 +1,24 @@
+{
+    "name": "power-mqtt-service",
+    "version": "1.0.0",
+    "private": true,
+    "description": "MQTT (EMQX/WSS) to Redis and Socket.IO sidecar for the Power Monitoring System",
+    "type": "module",
+    "main": "index.js",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node --watch index.js",
+        "check": "node --check index.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "ioredis": "^5.4.2",
+        "mqtt": "^5.10.1",
+        "socket.io": "^4.8.1"
+    }
+}

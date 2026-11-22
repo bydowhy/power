@@ -1,28 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
+import { usePowerMqtt } from '@/composables/usePowerMqtt';
 
-const meters = ref<Record<string, any>>({});
+const { meters } = usePowerMqtt();
 
 const diagramNodes = ref([
-    { id: 'sensor_sim_01', label: 'AC DRIVE', top: '25.5%', left: '33%' },
-    { id: 'sensor_sim_02', label: 'UTILITY', top: '25.5%', left: '40%' },
-    { id: 'sensor_sim_03', label: 'APF/PM', top: '25.5%', left: '47%' },
-    { id: 'sensor_sim_04', label: 'P2', top: '25.5%', left: '53.75%' },
-    { id: 'sensor_sim_05', label: 'SP OCC', top: '25.5%', left: '60.9%' },
-    { id: 'sensor_sim_06', label: 'SP ONP', top: '25.5%', left: '67.75%' },
+    { id: 'sensor_sim_01', label: 'AC DRIVE', top: '28%', left: '31.6%' },
+    { id: 'sensor_sim_02', label: 'UTILITY', top: '28%', left: '38.9%' },
+    { id: 'sensor_sim_03', label: 'APF/PM', top: '28%', left: '45.9%' },
+    { id: 'sensor_sim_04', label: 'P2', top: '28%', left: '53.1%' },
+    { id: 'sensor_sim_05', label: 'SP OCC', top: '28%', left: '60.4%' },
+    { id: 'sensor_sim_06', label: 'SP ONP', top: '28%', left: '67.4%' },
 ]);
-
-onMounted(() => {
-    if ((window as any).Echo) {
-        (window as any).Echo.private('power-monitoring')
-            .listen('.power.updated', (event: any) => {
-                if (event && event.meters) {
-                    meters.value = event.meters;
-                }
-            });
-    }
-});
 </script>
 
 <template>

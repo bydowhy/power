@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { dashboard } from '@/routes';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { Line } from 'vue-chartjs';
+import { usePowerMqtt } from '@/composables/usePowerMqtt';
 import {
   Chart as ChartJS,
   Title,
@@ -16,24 +16,13 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale);
 
-defineOptions({
-    layout: {
-        breadcrumbs: [
-            {title: 'Dashboard', href: dashboard()},
-        ],
-    },
-});
+const definedMeters = [
+    'HA00', 'HB00', 'AA21103', 'AA21302', 'AA21401', 'AA21402', 'AA11202', 'AA11402',
+    'OCCSP1', 'ONPSP1', 'DRIVEPM1', 'APFPM1', 'UTILITYPM1', 'BOILER1', 'BOILER2', 'BOILER3',
+    'WWT', 'CONVERTING'
+];
 
-interface MeterData {
-    voltage: number;
-    current: number;
-    power_factor: number;
-    total_power: number;
-    total_energy: number;
-    last_seen: number;
-}
-
-const meters = ref<Record<string, MeterData>>({});
+const { meters } = usePowerMqtt();
 const isClient = ref(false);
 
 // Modal State
@@ -89,16 +78,6 @@ const openDetail = async (meterId: string) => {
 
 onMounted(() => {
     isClient.value = true;
-    
-    // Setup MQTT Listener
-    if ((window as any).Echo) {
-        (window as any).Echo.private('power-monitoring')
-            .listen('.power.updated', (event: any) => {
-                if (event && event.meters) {
-                    meters.value = event.meters;
-                }
-            });
-    }
 
     clockInterval = setInterval(() => {
         currentTime.value = new Date();
